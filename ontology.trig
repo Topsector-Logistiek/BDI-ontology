@@ -1,0 +1,323 @@
+prefix dct:      <http://purl.org/dc/terms/>
+prefix geo:      <http://www.opengis.net/ont/geosparql#>
+prefix owl:      <http://www.w3.org/2002/07/owl#>
+prefix prov:     <http://www.w3.org/ns/prov#>
+prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+prefix rec28:    <https://service.unece.org/trade/uncefact/vocabulary/rec28#>
+prefix sh:       <http://www.w3.org/ns/shacl#>
+prefix skos:     <http://www.w3.org/2004/02/skos/core#>
+prefix uncefact: <https://service.unece.org/trade/uncefact/trade/uncefact/vocabulary/uncefact#>
+prefix uncl3035: <https://service.unece.org/trade/uncefact/vocabulary/uncl3035#>
+
+prefix con:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/con/>
+prefix def:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/def/>
+prefix graph:    <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/graph/>
+prefix id:       <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/id/>
+prefix scheme:   <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/scheme/>
+prefix shp:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/shp/>
+prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
+
+graph:ontology {
+
+  graph:ontology
+    a owl:Ontology;
+    rdfs:label 'BDI Ontology'@en.
+
+
+  shp:Consignment
+    a sh:NodeShape;
+    sh:closed true;
+    sh:property
+      # add: consignee
+      # add: consignor
+      shp:Consignment_carrierParty,
+      shp:Consignment_finalDestinationLocation,
+      shp:Consignment_mainCarriageTransportMovement,
+      shp:Consignment_relatedTradeTransaction,
+      shp:Consignment_transportEvent;
+    sh:targetClass def:Consignment.
+  def:Consignment
+    a owl:Class;
+    dct:subject uncefact:Consignment.
+
+  shp:Consignment_carrierParty
+    a sh:PropertyShape;
+    sh:class def:TransportMovement;
+    sh:path def:carrierParty.
+  def:carrierParty
+    a owl:ObjectProperty;
+    dct:subject uncefact:carrierParty;
+    rdfs:domain def:Consignment;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Party.
+
+  shp:Consignment_finalDestinationLocation
+    a sh:PropertyShape;
+    sh:class def:Location;
+    sh:path def:finalDestinationLocation.
+  def:finalDestinationLocation
+    a owl:ObjectProperty;
+    dct:subject uncefact:finalDestinationLocation;
+    rdfs:domain def:Consignment;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Location.
+
+  shp:Consignment_mainCarriageTransportMovement
+    a sh:PropertyShape;
+    sh:class def:TransportMovement;
+    sh:path def:mainCarriageTransportMovement.
+  def:relatedTradeTransaction
+    a owl:ObjectProperty;
+    dct:subject uncefact:mainCarriageTransportMovement;
+    rdfs:domain def:Consignment;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:TransportMovement.
+
+  shp:Consignment_relatedTradeTransaction
+    a sh:PropertyShape;
+    sh:class def:TradeTransaction;
+    sh:path def:relatedTradeTransaction.
+  def:relatedTradeTransaction
+    a owl:ObjectProperty;
+    dct:subject uncefact:relatedTradeTransaction;
+    rdfs:domain def:Consignment;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:TradeTransaction.
+
+  shp:Consignment_transportEvent
+    a sh:PropertyShape;
+    sh:class def:Event;
+    sh:path def:transportEvent.
+  def:transportEvent
+    a owl:ObjectProperty;
+    dct:subject uncefact:transportEvent;
+    rdfs:domain def:Consignment;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Event.
+
+
+  shp:Driver
+    a sh:NodeShape;
+    sh:closed true;
+    sh:targetClass def:Driver.
+  def:Driver
+    a owl:Class;
+    dct:subject uncl3035:Driver;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:subClassOf def:Party;
+    owl:onProperty def:partyRoleCode;
+    owl:hasValue uncl3035:Driver.
+
+
+  shp:Event
+    a sh:NodeShape;
+    sh:closed true;
+    sh:targetClass def:Event.
+  def:Event
+    a owl:Class;
+    dct:subject uncefact:Event;
+    rdfs:isDefinedBy graph:ontology.
+
+
+  shp:Location
+    a sh:NodeShape;
+    sh:closed true;
+    sh:targetClass def:Location.
+  def:Location
+    a owl:Class;
+    dct:subject uncefact:Location;
+    rdfs:isDefinedBy graph:ontology.
+
+
+  shp:Party
+    a sh:NodeShape;
+    sh:closed true;
+    sh:property
+      shp:Party_partyRoleCode,
+      shp:Party_specifiedLocation;
+    sh:targetClass def:Party.
+  def:Party
+    a owl:Class;
+    dct:subject uncefact:Party;
+    rdfs:isDefinedBy graph:ontology.
+
+  shp:Party_partyRoleCode
+    a sh:PropertyShape;
+    sh:class uncefact:UNCL3035Code;
+    sh:path def:partyRoleCode.
+  def:partyRoleCode
+    a owl:ObjectProperty;
+    dct:subject uncefact:partyRoleCode;
+    rdfs:domain def:Party;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range uncefact:UNCL3035Code.
+
+  shp:Party_specifiedLocation
+    a sh:PropertyShape;
+    sh:class def:Location;
+    sh:path def:specifiedLocation.
+  def:specifiedLocation
+    a owl:ObjectProperty;
+    dct:subject uncefact:specifiedLocation;
+    rdfs:domain def:Party;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Location.
+
+
+  shp:TradeAgreement
+    a sh:NodeShape;
+    sh:closed true;
+    sh:property
+      shp:TradeAgreement_buyerParty,
+      shp:TradeAgreement_sellerParty;
+    sh:targetClass def:TradeAgreement.
+  def:TradeAgreement
+    a owl:Class;
+    dct:subject uncefact:TradeAgreement;
+    rdfs:isDefinedBy graph:ontology.
+
+  shp:TradeAgreement_buyerParty
+    a sh:PropertyShape;
+    sh:class def:Party;
+    sh:path def:buyerParty.
+  def:buyerParty
+    a owl:ObjectProperty;
+    dct:related uncefact:buyerParty;
+    rdfs:domain def:Order;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Party.
+
+  shp:TradeAgreement_sellerParty
+    a sh:PropertyShape;
+    sh:class def:Party;
+    sh:path def:sellerParty.
+  def:sellerParty
+    a owl:ObjectProperty;
+    dct:related uncefact:sellerParty;
+    rdfs:domain def:Order;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Party.
+
+
+  shp:TradeTransaction
+    a sh:NodeShape;
+    sh:closed true;
+    sh:property shp:TradeTransaction_applicableTradeAgreement;
+    sh:targetClass def:TradeTransaction.
+  def:TradeTransaction
+    a owl:Class;
+    dct:subject uncefact:TradeTransaction.
+
+  shp:TradeTransaction_applicableTradeAgreement
+    a sh:PropertyShape;
+    sh:class def:TradeAgreement;
+    sh:path def:applicableTradeAgreement.
+  def:applicableTradeAgreement
+    a owl:ObjectProperty;
+    dct:subject uncefact:applicableTradeAgreement;
+    rdfs:domain def:TradeTransaction;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:TradeAgreement.
+
+
+  shp:TransportMeans
+    a sh:NodeShape;
+    sh:closed true;
+    sh:property
+      shp:TransportMeans_identifier,
+      shp:TransportMeans_operatorParty,
+      shp:TransportMeans_transportMeansTypeCode;
+    sh:targetClass def:TransportMeans.
+  def:TransportMeans
+    a owl:Class;
+    dct:subject uncefact:TransportMeans;
+    rdfs:isDefinedBy graph:ontology.
+
+  shp:TransportMeans_identifier
+    a sh:PropertyShape;
+    sh:datatype xsd:string;
+    sh:path dct:identifier.
+
+  shp:TransportMeans_operatorParty
+    a sh:PropertyShape;
+    sh:class def:Party;
+    sh:path def:operatorParty.
+  def:operatorParty
+    a owl:ObjectProperty;
+    dct:subject uncefact:operatorParty;
+    rdfs:domain def:TransportMeans;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Party.
+
+  shp:TransportMeans_transportMeansTypeCode
+    a sh:PropertyShape;
+    sh:class uncefact:UNCL8179Code;
+    sh:path def:transportMeansTypeCode.
+  def:transportMeansTypeCode
+    a owl:ObjectProperty;
+    dct:subject uncefact:transportMeansTypeCode;
+    rdfs:domain def:TransportMeans;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range uncefact:UNCL8179Code.
+
+
+  shp:TransportMovement
+    a sh:NodeShape;
+    sh:closed true;
+    sh:property
+      shp:TransportMovement_loadingEvent,
+      shp:TransportMovement_unloadingEvent,
+      shp:TransportMovement_usedTransportMeans;
+    sh:targetClass def:TransportMovement.
+  def:TransportMovement
+    a owl:Class;
+    dct:subject uncefact:TransportMovement;
+    rdfs:isDefinedBy graph:ontology.
+
+  shp:TransportMovement_loadingEvent
+    a sh:PropertyShape;
+    sh:class def:Event;
+    sh:path def:loadingEvent.
+  def:loadingEvent
+    a owl:ObjectProperty;
+    dct:subject uncefact:loadingEvent;
+    rdfs:domain def:TransportMovement;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Event.
+
+  shp:TransportMovement_unloadingEvent
+    a sh:PropertyShape;
+    sh:class def:Event;
+    sh:path def:unloadingEvent.
+  def:unloadingEvent
+    a owl:ObjectProperty;
+    dct:subject uncefact:unloadingEvent;
+    rdfs:domain def:TransportMovement;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:Event.
+
+  shp:TransportMovement_usedTransportMeans
+    a sh:PropertyShape;
+    sh:class def:TransportMeans;
+    sh:path def:usedTransportMeans.
+  def:usedTransportMeans
+    a owl:ObjectProperty;
+    dct:subject uncefact:usedTransportMeans;
+    rdfs:domain def:TransportMovement;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range def:TransportMeans.
+
+
+  shp:Truck
+    a sh:NodeShape;
+    sh:closed true;
+    sh:targetClass def:Truck.
+  def:Truck
+    a owl:Class;
+    dct:subject rec28:Truck;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:subClassOf uncefact:TransportMeans;
+    owl:onProperty def:transportMeansTypeCode;
+    owl:hasValue rec28:Truck.
+}
