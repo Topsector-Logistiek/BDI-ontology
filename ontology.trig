@@ -67,7 +67,7 @@ graph:ontology {
     a sh:PropertyShape;
     sh:class def:TransportMovement;
     sh:path def:mainCarriageTransportMovement.
-  def:relatedTradeTransaction
+  def:mainCarriageTransportMovement
     a owl:ObjectProperty;
     dct:subject uncefact:mainCarriageTransportMovement;
     rdfs:domain def:Consignment;
