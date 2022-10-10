@@ -25,6 +25,21 @@ graph:ontology {
     rdfs:label 'BDI Ontology'@en.
 
 
+  shp:identificationId
+    a sh:PropertyShape;
+    sh:datatype xsd:string;
+    sh:path def:identificationId.
+  
+  def:identificationId
+    a owl:DatatypeProperty ;
+    dct:subject uncefact:identificationId ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range xsd:string .
+
+
+
+
   shp:Consignment
     a sh:NodeShape;
     sh:closed true;
@@ -183,7 +198,7 @@ graph:ontology {
     sh:path def:buyerParty.
   def:buyerParty
     a owl:ObjectProperty;
-    dct:related uncefact:buyerParty;
+    dct:subject uncefact:buyerParty;
     rdfs:domain def:Order;
     rdfs:isDefinedBy graph:ontology;
     rdfs:range def:Party.
@@ -194,7 +209,7 @@ graph:ontology {
     sh:path def:sellerParty.
   def:sellerParty
     a owl:ObjectProperty;
-    dct:related uncefact:sellerParty;
+    dct:subject uncefact:sellerParty;
     rdfs:domain def:Order;
     rdfs:isDefinedBy graph:ontology;
     rdfs:range def:Party.
@@ -225,7 +240,7 @@ graph:ontology {
     a sh:NodeShape;
     sh:closed true;
     sh:property
-      shp:TransportMeans_identifier,
+      shp:TransportMeans_identificationId,
       shp:TransportMeans_operatorParty,
       shp:TransportMeans_transportMeansTypeCode;
     sh:targetClass def:TransportMeans.
@@ -234,10 +249,12 @@ graph:ontology {
     dct:subject uncefact:TransportMeans;
     rdfs:isDefinedBy graph:ontology.
 
-  shp:TransportMeans_identifier
+  shp:TransportMeans_identificationId
     a sh:PropertyShape;
-    sh:datatype xsd:string;
-    sh:path dct:identifier.
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:path def:identificationId .
+
 
   shp:TransportMeans_operatorParty
     a sh:PropertyShape;
@@ -317,7 +334,7 @@ graph:ontology {
     a owl:Class;
     dct:subject rec28:Truck;
     rdfs:isDefinedBy graph:ontology;
-    rdfs:subClassOf uncefact:TransportMeans;
+    rdfs:subClassOf def:TransportMeans;
     owl:onProperty def:transportMeansTypeCode;
     owl:hasValue rec28:Truck.
 }
