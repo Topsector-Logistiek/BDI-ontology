@@ -149,6 +149,7 @@ graph:ontology {
     a sh:NodeShape;
     sh:closed true;
     sh:property
+      shp:name,
       shp:Party_partyRoleCode,
       shp:Party_specifiedLocation;
     sh:targetClass def:Party.
@@ -156,6 +157,17 @@ graph:ontology {
     a owl:Class;
     dct:subject uncefact:Party;
     rdfs:isDefinedBy graph:ontology.
+
+  shp:name
+    a sh:PropertyShape;
+    sh:datatype xsd:string;
+    sh:path def:name.
+  def:name
+    a owl:ObjectProperty;
+    dct:subject uncefact:name;
+    rdfs:domain rdfs:Resource;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range xsd:string.
 
   shp:Party_partyRoleCode
     a sh:PropertyShape;
@@ -179,6 +191,14 @@ graph:ontology {
     rdfs:isDefinedBy graph:ontology;
     rdfs:range def:Location.
 
+  shp:Route
+    a sh:NodeShape;
+    sh:closed true;
+    sh:targetClass def:Route.
+  def:Route
+    a owl:Class;
+    dct:subject uncefact:Route;
+    rdfs:isDefinedBy graph:ontology.
 
   shp:TradeAgreement
     a sh:NodeShape;
