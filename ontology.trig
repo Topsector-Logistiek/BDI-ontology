@@ -298,6 +298,34 @@ graph:ontology {
     rdfs:isDefinedBy graph:ontology;
     rdfs:range uncefact:UNCL8179Code.
 
+  shp:TransportEquipment
+    a sh:NodeShape;
+    sh:closed true;
+    sh:property
+      shp:TransportEquipment_identificationId,
+      shp:TransportEquipment_transportEquipmentCategoryCode;
+    sh:targetClass def:TransportEquipment. 
+  def:TransportEquipment
+    a owl:Class;
+    dct:subject uncefact:TransportEquipment; #Will most likely change to LogisticsTransportEquipment in release 1.0 of uncefact-ld
+    rdfs:isDefinedBy graph:ontology.
+
+  shp:TransportEquipment_identificationId
+    a sh:PropertyShape;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:path def:identificationId .
+
+  shp:TransportEquipment_transportEquipmentCategoryCode
+    a sh:PropertyShape;
+    sh:class uncefact:UNCL8053Code;
+    sh:path def:transportEquipmentCategoryCode.
+  def:transportEquipmentCategoryCode
+    a owl:ObjectProperty;
+    dct:subject uncefact:transportEquipmentCategoryCode;
+    rdfs:domain def:TransportEquipment;
+    rdfs:isDefinedBy graph:ontology;
+    rdfs:range uncefact:UNCL8053Code.
 
   shp:TransportMovement
     a sh:NodeShape;
