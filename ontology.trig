@@ -200,6 +200,15 @@ graph:ontology {
     dct:subject uncefact:Route;
     rdfs:isDefinedBy graph:ontology.
 
+  shp:Sensor
+    a sh:NodeShape;
+    sh:closed true;
+    sh:targetClass def:Sensor. 
+  def:Sensor
+    a owl:Class;
+    dct:subject uncefact:Sensor;
+    rdfs:isDefinedBy graph:ontology.
+
   shp:TradeAgreement
     a sh:NodeShape;
     sh:closed true;
