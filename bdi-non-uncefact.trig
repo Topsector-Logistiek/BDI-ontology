@@ -1,0 +1,439 @@
+prefix dct:      <http://purl.org/dc/terms/>
+prefix geo:      <http://www.opengis.net/ont/geosparql#>
+prefix owl:      <http://www.w3.org/2002/07/owl#>
+prefix prov:     <http://www.w3.org/ns/prov#>
+prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+prefix rec28:    <https://service.unece.org/trade/uncefact/vocabulary/rec28#>
+prefix sh:       <http://www.w3.org/ns/shacl#>
+prefix skos:     <http://www.w3.org/2004/02/skos/core#>
+prefix uncefact: <https://service.unece.org/trade/uncefact/trade/uncefact/vocabulary/uncefact#>
+prefix uncl3035: <https://service.unece.org/trade/uncefact/vocabulary/uncl3035#>
+
+prefix con:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/con/>
+prefix def:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/def/>
+prefix graph:    <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/graph/>
+prefix id:       <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/id/>
+prefix scheme:   <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/scheme/>
+prefix shp:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/shp/>
+prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
+
+# This file contains classes and properties from OTM which previously extended the FEDeRATED ontology. 
+# All classes and properties have been copied as-is, and linked to the BDI-Ontology where necessary.
+
+
+graph:ontology {
+
+#Top:
+  def:remark
+    a owl:DatatypeProperty ;
+    rdfs:comment "Free text field for adding on a remark on the concept." ;
+    # Wordt in de OTM API gebruikt op instanties van de volgende klassen:
+    # - businessService:Consignment
+    # - Event:Event
+    # - pi:Location
+    # - DigitalTwin:PhysicalObject
+    rdfs:domain rdfs:Resource;
+    rdfs:label "Remark" ;
+    rdfs:range xsd:string ;
+  . 
+
+  def:consignmentType
+    a owl:ObjectProperty ;
+    rdfs:comment "Refers to the type of consignment." ;
+    rdfs:domain def:Consignment ;
+    rdfs:label "Type of the consignment" ;
+    rdfs:range def:ConsignmentType ;
+  . 
+
+  # Categorie 1
+  def:status
+    a owl:ObjectProperty ;
+    rdfs:comment "Refers to the status of the referenced object." ;
+    # Wordt in de OTM API gebruikt op instanties van de volgende klassen:
+    # - businessService:Consignment
+    # - businessService:Itinerary
+    rdfs:domain rdfs:Resource;
+    rdfs:label "Status of the referenced object" ;
+    rdfs:range def:Status ;
+  . 
+
+  # Categorie 3: RANGE_PROPERTY
+  # Oplossing 3: houden zo!
+  def:transportMode
+    a owl:ObjectProperty ;
+    rdfs:comment "Method of transport used for the carriage of goods." ;
+    # Wordt in de OTM API gebruikt op instanties van de volgende klassen:
+    # - otm:MoveEvent
+    # - businessService:Itinerary
+    rdfs:domain rdfs:Resource;
+    rdfs:label "Transport Mode" ;
+    rdfs:range def:TransportMode ;
+  . 
+
+ 
+
+
+
+  def:truckEmission
+    a owl:ObjectProperty ;
+    rdfs:comment "The emission standard of the truck." ;
+    rdfs:domain def:Truck ;
+    rdfs:label "Truck Emmission" ;
+    rdfs:range def:EmissionStandard ;
+  .
+
+  # Misschien 'uncefact:identificationId'?
+  def:equipmentBarCode
+    a owl:DatatypeProperty ;
+    rdfs:comment "A barcode present on the equipment that uniquely identifies this equipment." ;
+    rdfs:domain def:TransportEquipment ;
+    rdfs:label "Equipment barCode" ;
+    rdfs:range xsd:string ;
+  .
+  def:loadMeters
+    a owl:DatatypeProperty ;
+    rdfs:comment "The loading meter is used as a unit to account for goods that can not be stacked or where you can't stack on top of it. One loading meter corresponds to one running meter of cargo space in a vehicle." ;
+    rdfs:domain def:TransportEquipment ;
+    rdfs:label "Equipment loadMeters" ;
+    rdfs:range qudt:Quantity ;
+  .
+
+
+  def:sensorPlacement
+    a owl:DatatypeProperty ;
+    rdfs:comment "Sometimes more than one sensor can be associated with a single entity. This is the case e.g. in cooled trailers that are divided into compartments with different temperatures, where each compartment has its own sensor. The placement member can be used to identify where a sensor is placed." ; 
+    rdfs:domain def:Sensor ;
+    rdfs:label "Placement of the sensor" ;
+    rdfs:range xsd:string ;
+  . 
+  def:sensorType
+    a owl:DatatypeProperty ;
+    rdfs:domain def:Sensor ;
+    rdfs:label "Type of the sensor" ;
+    rdfs:range xsd:string ;
+  . 
+
+
+  def:goodsBarCode
+    a owl:DatatypeProperty ;
+    rdfs:comment "A barcode present on the (packaging of the) goods that uniquely identifies these goods." ;
+    rdfs:domain DigitalTwin:Goods ; # Huiswerk 4: opzoeken in UNCEFACT [LOW PRIORITY]
+    rdfs:label "Goods barCode" ;
+    rdfs:range xsd:string ;
+  .
+  def:goodsTechnicalName
+    a owl:DatatypeProperty ;
+    rdfs:comment "The technical name which shall supplement the proper shipping name shall be the ISO common name. A recognized chemical name, if relevant a biological name, or other name currently used in scientific and technical handbooks, journals and texts." ;
+    rdfs:domain DigitalTwin:Goods ; # Idem
+    rdfs:label "Goods Technical Name" ;
+    rdfs:range xsd:string ;
+  .
+  def:waste
+    a owl:DatatypeProperty ;
+    rdfs:comment "Indicator to be used in case commodity is classified as waste." ;
+    rdfs:domain DigitalTwin:Goods ; # Idem
+    rdfs:label "Goods Waste" ;
+    rdfs:range xsd:boolean ;
+  .
+  def:environmentallyHazardous
+    a owl:DatatypeProperty ;
+    rdfs:comment "Indicator to be used to label waste as environmentally hazardous." ;
+    rdfs:domain DigitalTwin:Goods ; # Idem
+    rdfs:label "Goods Environmentally Hazardous" ;
+    rdfs:range xsd:boolean ;
+  .
+
+
+  def:AdrGoods a owl:Class ;
+    rdfs:label "AdrGoods" ;
+    rdfs:subClassOf Classifications:DangerousGoods ;
+  .
+
+  def:route
+    a owl:ObjectProperty ;
+    rdfs:comment "The route that belongs to the routeconstraint" ;
+    rdfs:domain def:RouteConstraint ;
+    rdfs:label "Route from routeconstraint" ;
+    rdfs:range def:Route ;
+  .
+
+
+#Internal:
+  def:Result
+    a owl:Class ;
+    rdfs:comment "The result of the action, can only be present in the actual or realized lifecycles. The result has a required status and optional additional info, like a remark and reason (in the case of failure). " ;
+    rdfs:label "Result" ;
+  . 
+  def:hasResultStatus
+    a owl:ObjectProperty ;
+    rdfs:comment "Refers to the status of the result of an Event." ;
+    rdfs:domain def:Result ;
+    rdfs:label "Result status of an Event" ;
+    rdfs:range def:ResultStatus ;
+  . 
+
+  def:hasResultRemark
+    a owl:DatatypeProperty ;
+    rdfs:comment "The remark of the result, usually only interesting in case the result was failed or partially succeedded. Note that differs from the remark on an action, which is a remark that is relevant before the execution of the action. Whereas this remark is relevant for the result after execution." ;
+    rdfs:domain def:Result ;
+    rdfs:label "Result remark of an Event" ;
+    rdfs:range xsd:string ;
+  . 
+  def:hasResultReason
+    a owl:ObjectProperty ;
+    rdfs:comment "Refers to the reason of the result of an Event." ;
+    rdfs:domain def:Result ;
+    rdfs:label "Result reason of an Event" ;
+    rdfs:range def:ResultReason ;
+  . 
+
+
+  def:adrClassificationCode
+    a owl:DatatypeProperty ;
+    rdfs:comment "The classification code of the dangerous substance or article. The code consists out of a division number and compatibility group letter depending on the class." ;
+    rdfs:domain def:AdrGoods ;
+    rdfs:label "ADR Classification Code" ;
+    rdfs:range xsd:string ;
+  .
+  def:adrLabels
+    a owl:DatatypeProperty ;
+    rdfs:comment "The model number(s) of the labels/placards." ;
+    rdfs:domain def:AdrGoods ;
+    rdfs:label "ADR Labels" ;
+    rdfs:range xsd:string ;
+  .
+  def:adrTunnelCode
+    a owl:DatatypeProperty ;
+    rdfs:comment "Code to indicate tunnel category where restrictions apply to the passage of vehicles carrying dangerous goods." ;
+    rdfs:domain def:AdrGoods ;
+    rdfs:label "ADR Tunnel Code" ;
+    rdfs:range xsd:string ;
+  .
+  def:adrTransportCategory
+    a owl:DatatypeProperty ;
+    rdfs:comment "Determines the type of transport category the goods are categorized with. Possible categories: 0,1,2,3 or 4." ;
+    rdfs:domain def:AdrGoods ;
+    rdfs:label "ADR Transport Category" ;
+    rdfs:range xsd:integer ;
+  .
+  def:adrPoints
+    a owl:DatatypeProperty ;
+    rdfs:comment "Determines the amount of points the goods being transported are categorized with. The higher the points the more dangerous the goods are. " ;
+    rdfs:domain def:AdrGoods ;
+    rdfs:label "ADR Points" ;
+    rdfs:range xsd:integer ;
+  .
+
+
+#Values:
+  def:ConsignmentType
+    a owl:Class ;
+    rdfs:comment "Type of consignment e.g. FTL, Full Truck Load, LTL Less than Truck Load, bulk, reverse logistics orders, pick up order, delivery order." ;
+    rdfs:label "Consignment type" ;
+  . 
+  def:FTL
+    a def:ConsignmentType ;
+    rdfs:label "Full Truck Load" ;
+  .
+  def:LTL
+    a def:ConsignmentType ;
+    rdfs:label "Less than Truck Load" ;
+  .
+  def:Bulk
+    a def:ConsignmentType ;
+  .
+  def:PickUpOrder
+    a def:ConsignmentType ;
+  .
+  def:ReverseLogisticsOrders
+    a def:ConsignmentType ;
+  .
+  def:DeliveryOrder
+    a def:ConsignmentType ;
+  .
+
+
+  def:Constraint
+    a owl:Class ;
+    rdfs:comment """Constraints can do different things, depending on the context they're used in: 
+    In the context of a Location, access to the location is only allowed if the given constraint applies.
+    In the context of a Trip, constraints can be used to define constraints that have to be met during the trip.
+    In the context of a Shipment, constraints can be used to e.g. define minimum or maximum temperatures for shipments, or date time constraints for delivery.
+    Note that constraints can be nested and combined using the andConstraint, orConstraint and notConstraint.""" ;
+    rdfs:label "OTM Constraint" ;
+    rdfs:subClassOf sh:Nodeshape;
+    rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+      owl:onProperty schema:identifier ;
+    ] ;
+  .
+  def:TimeWindowConstraint
+    a owl:Class ;
+    rdfs:comment "TimeWindowConstraint allows you to give (optionally) both the start and end time of the window between which something needs to occur." ;
+    rdfs:label "TimeWindow Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:TemperatureConstraint
+    a owl:Class ;
+    rdfs:comment "TemperatureConstraint e.g. if the temperature in a refrigerated trailer has to stay below a given maximum during the trip." ;
+    rdfs:label "Temperature Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:SizeConstraint
+    a owl:Class ;
+    rdfs:label "Size Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:WeightConstraint
+    a owl:Class ;
+    rdfs:label "Weight Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:SpeedConstraint
+    a owl:Class ;
+    rdfs:label "Speed Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:SensorValueConstraint
+    a owl:Class ;
+    rdfs:label "SensorValue Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:FuelTypeConstraint
+    a owl:Class ;
+    rdfs:label "FuelType Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:VehicleTypeConstraint
+    a owl:Class ;
+    rdfs:label "VehicleType Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+  def:RouteConstraint
+    a owl:Class ;
+    rdfs:label "Route Constraint" ;
+    rdfs:subClassOf def:Constraint ;
+  .
+
+
+  def:LocationType
+    a owl:Class ;
+    rdfs:comment "Type of location e.g. Warehouse, Store, etc." ;
+    rdfs:label "Location type" ;
+  . 
+  def:Warehouse
+    a def:LocationType ;
+    rdfs:label "Warehouse" ;
+  .
+  def:Store
+    a def:LocationType ;
+    rdfs:label "Store" ;
+  .
+  def:EnvironmentalZone
+    a def:LocationType ;
+    rdfs:label "Environmental Zone" ;
+  .
+  def:RestrictedArea
+    a def:LocationType ;
+    rdfs:label "Restricted Area" ;
+  .
+  def:Customer
+    a def:LocationType ;
+    rdfs:label "Customer" ;
+  .
+  def:OperationalBase
+    a def:LocationType ;
+    rdfs:label "Operational Base" ;
+  .
+
+
+  def:TransportMode
+    a owl:Class ;
+    rdfs:comment "Method of transport. These values are based on recommendation 19 of UNECE." ;
+    rdfs:label "Transport Mode" ;
+  . 
+  def:Maritime
+    a def:TransportMode ;
+    rdfs:label "Maritime" ;
+  .
+  def:Rail
+    a def:TransportMode ;
+    rdfs:label "Rail" ;
+  .
+  def:Road
+    a def:TransportMode ;
+    rdfs:label "Road" ;
+  .
+  def:Air
+    a def:TransportMode ;
+    rdfs:label "Air" ;
+  .
+  def:InlandWaterTransport
+    a def:TransportMode ;
+    rdfs:label "Inland Water Transport" ;
+  .
+
+  def:Result
+    a owl:Class ;
+    rdfs:comment "The result of the action, can only be present in the actual or realized lifecycles. The result has a required status and optional additional info, like a remark and reason (in the case of failure). " ;
+    rdfs:label "Result" ;
+  . 
+
+
+
+
+  def:ResultStatus
+    a owl:Class ;
+    rdfs:comment "The status of the result, either succeeded, failed, partially succeeded or cancelled. " ;
+    rdfs:label "Result Status" ;
+  . 
+  def:Succeeded
+    a def:ResultStatus ;
+    rdfs:label "Succeeded" ;
+  .
+  def:Failed
+    a def:ResultStatus ;
+    rdfs:label "Failed" ;
+  .
+  def:PartiallySucceeded
+    a def:ResultStatus ;
+    rdfs:label "Partially Succeeded" ;
+  .
+
+
+
+
+  def:Status
+    a owl:Class ;
+    rdfs:comment "Whether the referenced object is in state of a draft, requested, confirmed, in transit, completed or cancelled. " ;
+    rdfs:label "Status" ;
+  . 
+  def:Draft
+    a def:Status ;
+    rdfs:label "Draft" ;
+  .
+  def:Requested
+    a def:Status ;
+    rdfs:label "Requested" ;
+  .
+  def:Confirmed
+    a def:Status ;
+    rdfs:label "Confirmed" ;
+  .
+  def:InTransit
+    a def:Status ;
+    rdfs:label "InTransit" ;
+  .
+  def:Completed
+    a def:Status ;
+    rdfs:label "Completed" ;
+  .
+  def:Cancelled
+    a def:Status ;
+    rdfs:label "Cancelled" ;
+  .
+
+}
+

@@ -1,0 +1,78 @@
+prefix dct:      <http://purl.org/dc/terms/>
+prefix geo:      <http://www.opengis.net/ont/geosparql#>
+prefix owl:      <http://www.w3.org/2002/07/owl#>
+prefix prov:     <http://www.w3.org/ns/prov#>
+prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+prefix rec28:    <https://service.unece.org/trade/uncefact/vocabulary/rec28#>
+prefix sh:       <http://www.w3.org/ns/shacl#>
+prefix skos:     <http://www.w3.org/2004/02/skos/core#>
+prefix uncefact: <https://service.unece.org/trade/uncefact/trade/uncefact/vocabulary/uncefact#>
+prefix uncl3035: <https://service.unece.org/trade/uncefact/vocabulary/uncl3035#>
+
+prefix con:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/con/>
+prefix def:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/def/>
+prefix graph:    <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/graph/>
+prefix id:       <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/id/>
+prefix scheme:   <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/scheme/>
+prefix shp:      <https://logistiek.triply.cc/TopsectorLogistiek/bdi-ontology/model/shp/>
+prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
+
+# This file contains classes and properties from OTM which previously extended the FEDeRATED ontology.
+# All classes and properties have been copied as-is, and linked have NOT yet been linked to the BDI-Ontology.
+
+graph:ontology {
+
+# Top
+
+ # Huiswerk 1: zoek een top ontologie voor soorten events (Dolce?)
+  otm:MoveEvent
+    a owl:Class ;
+    rdfs:comment "A Move Event models moving between two or more locations, potentially with detailed route information on how to move between these locations." ;
+    rdfs:label "Move Event" ;
+    rdfs:subClassOf Event:AtomicEvent ; # UNCEFACT
+  .
+  otm:BreakEvent
+    a owl:Class ;
+    rdfs:comment "A Break Event models a mandatory resting period for the driver of the vehicle. During this period the driver is prohibited from doing any driving activities or other work." ;
+    rdfs:label "Break Event" ;
+    rdfs:subClassOf Event:PlanningEvent ; # UNCEFACT
+  .
+  otm:WaitEvent
+    a owl:Class ;
+    rdfs:comment "A Wait Event models waiting at a particular location during the trip. This can be due to various circumstances such as waiting for the vehicle to be transported by a ferry or train. Or because of waiting at frontiers or docks (e.g. the dock of the loading/unload location is occupied) or traffic prohibitions. The driver is allowed to leave the vehicle during this period. An important aspect distinguishing this from the break action is that waiting times can be shortened because of changing circumstances." ;
+    rdfs:label "Wait Event" ;
+    rdfs:subClassOf Event:PlanningEvent ;
+  .
+  otm:involvedDriver
+    a owl:ObjectProperty ;
+    rdfs:label "involved Driver" ;
+    rdfs:comment "The relationship between an Event and an involved driver that has been instantiated as a businessService:[L]egalperson."; 
+    # Huiswerk 1:
+    #rdfs:domain businessService:BusinessTransaction; # <-- rare definitie in FEDeRATED
+    #            def:Event; # <-- is beter, een subklasse van def:Event kan natuurlijk ook
+    #rdfs:range businessService:LegalPerson; # <-- komt overeen met uncefact:Party ("has a legal connotation").
+    #           def:Driver; # <-- is goed, want is een subklasse van def:Party, en party heeft een legal connotation
+    rdfs:subPropertyOf Event:involvedOperator ;
+  .
+  otm:hasResult
+    a owl:ObjectProperty ;
+    rdfs:comment "Refers to the result of an Event." ;
+    rdfs:domain Event:Event ; # Huiswerk 1
+    rdfs:label "Result of an Event" ;
+    rdfs:range otm:Result ;
+  . 
+
+
+
+# Internal
+  def:reason
+    a owl:DatatypeProperty ;
+    rdfs:comment "A reason for why the event occured." ;
+    rdfs:domain def:WaitEvent ;
+    rdfs:label "Reason" ;
+    rdfs:range xsd:string ;
+  . 
+
+
+}
