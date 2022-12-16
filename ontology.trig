@@ -6,8 +6,10 @@ prefix sh:       <http://www.w3.org/ns/shacl#>
 prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
 
 prefix uncefact: <https://ontology.bdinetwork.org/uncefact-ccl/>
-prefix uncl3035: <https://service.unece.org/trade/uncefact/vocabulary/uncl3035#>
-prefix rec28:    <https://service.unece.org/trade/uncefact/vocabulary/rec28#>
+
+prefic unece:    <https://vocabulary.uncefact.org/>
+prefix uncl3035: <https://vocabulary.uncefact.org/uncl3035#>
+prefix rec28:    <https://vocabulary.uncefact.org/rec28#>
 
 prefix graph:    <https://ontology.bdinetwork.org/graph/>
 prefix scheme:   <https://ontology.bdinetwork.org/model/scheme/>
