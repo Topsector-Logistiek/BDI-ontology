@@ -14,13 +14,11 @@ prefix scheme:   <https://ontology.bdinetwork.org/model/scheme/>
 prefix def:      <https://ontology.bdinetwork.org/model/def/>
 prefix shp:      <https://ontology.bdinetwork.org/model/shp/>
 
-
 graph:bdiOntology {
 
   graph:bdiOntology
     a owl:Ontology;
     rdfs:label 'BDI Ontology'@en.
-
 
   shp:identificationId
     a sh:PropertyShape;
@@ -34,15 +32,10 @@ graph:bdiOntology {
     rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range xsd:string .
 
-
-
-
   shp:Consignment
     a sh:NodeShape;
     sh:closed true;
     sh:property
-      # add: consignee
-      # add: consignor
       shp:Consignment_carrierParty,
       shp:Consignment_finalDestinationLocation,
       shp:Consignment_mainCarriageTransportMovement,
@@ -108,7 +101,6 @@ graph:bdiOntology {
     rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Event.
 
-
   shp:Driver
     a sh:NodeShape;
     sh:closed true;
@@ -121,7 +113,6 @@ graph:bdiOntology {
     owl:onProperty def:partyRoleCode;
     owl:hasValue uncl3035:Driver.
 
-
   shp:Event
     a sh:NodeShape;
     sh:closed true;
@@ -131,7 +122,6 @@ graph:bdiOntology {
     dct:subject uncefact:Event;
     rdfs:isDefinedBy graph:bdiOntology.
 
-
   shp:Location
     a sh:NodeShape;
     sh:closed true;
@@ -140,7 +130,6 @@ graph:bdiOntology {
     a owl:Class;
     dct:subject uncefact:Location;
     rdfs:isDefinedBy graph:bdiOntology.
-
 
   shp:Party
     a sh:NodeShape;
@@ -240,7 +229,6 @@ graph:bdiOntology {
     rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Party.
 
-
   shp:TradeTransaction
     a sh:NodeShape;
     sh:closed true;
@@ -261,7 +249,6 @@ graph:bdiOntology {
     rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:TradeAgreement.
 
-
   shp:TransportMeans
     a sh:NodeShape;
     sh:closed true;
@@ -280,7 +267,6 @@ graph:bdiOntology {
     sh:minCount 1;
     sh:maxCount 1;
     sh:path def:identificationId .
-
 
   shp:TransportMeans_operatorParty
     a sh:PropertyShape;
@@ -313,7 +299,7 @@ graph:bdiOntology {
     sh:targetClass def:TransportEquipment. 
   def:TransportEquipment
     a owl:Class;
-    dct:subject uncefact:TransportEquipment; #Will most likely change to LogisticsTransportEquipment in release 1.0 of uncefact-ld
+    dct:subject uncefact:TransportEquipment;
     rdfs:isDefinedBy graph:bdiOntology.
 
   shp:TransportEquipment_identificationId
@@ -378,7 +364,6 @@ graph:bdiOntology {
     rdfs:domain def:TransportMovement;
     rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:TransportMeans.
-
 
   shp:Truck
     a sh:NodeShape;
