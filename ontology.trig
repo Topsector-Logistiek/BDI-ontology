@@ -26,7 +26,6 @@ graph:bdiOntology {
     a sh:PropertyShape;
     sh:datatype xsd:string;
     sh:path def:identificationId.
-  
   def:identificationId
     a owl:DatatypeProperty ;
     dct:subject uncefact:identificationId; #Simplified/Alternative version of UDT000011
@@ -151,7 +150,7 @@ graph:bdiOntology {
     sh:datatype xsd:string;
     sh:path def:name.
   def:name
-    a owl:ObjectProperty;
+    a owl:DatatypeProperty;
     dct:subject uncefact:name; #All 'Unique UN Assigned ID' for BCC's with 'Name' as 'Property Term'
     rdfs:domain rdfs:Resource;
     rdfs:isDefinedBy graph:bdiOntology;
