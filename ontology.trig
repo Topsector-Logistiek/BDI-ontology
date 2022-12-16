@@ -45,7 +45,8 @@ graph:bdiOntology {
     sh:targetClass def:Consignment.
   def:Consignment
     a owl:Class;
-    dct:subject uncefact:Consignment. #UN00001762
+    dct:subject uncefact:Consignment; #UN00001762
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:Consignment_carrierParty
     a sh:PropertyShape;
@@ -237,7 +238,8 @@ graph:bdiOntology {
     sh:targetClass def:TradeTransaction.
   def:TradeTransaction
     a owl:Class;
-    dct:subject uncefact:TradeTransaction. #UN00002077
+    dct:subject uncefact:TradeTransaction; #UN00002077
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:TradeTransaction_applicableTradeAgreement
     a sh:PropertyShape;
