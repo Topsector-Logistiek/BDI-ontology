@@ -20,7 +20,8 @@ graph:bdiOntology {
 
   graph:bdiOntology
     a owl:Ontology;
-    rdfs:label 'BDI Ontology'@en.
+    rdfs:label 'BDI Ontology'@en;
+    owl:versionInfo 'v0.1.0'.
 
   shp:identificationId
     a sh:PropertyShape;
