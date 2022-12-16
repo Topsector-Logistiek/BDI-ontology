@@ -7,7 +7,7 @@ prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
 
 prefix uncefact: <https://ontology.bdinetwork.org/uncefact-ccl/>
 
-prefic unece:    <https://vocabulary.uncefact.org/>
+prefix unece:    <https://vocabulary.uncefact.org/>
 prefix uncl3035: <https://vocabulary.uncefact.org/uncl3035#>
 prefix rec28:    <https://vocabulary.uncefact.org/rec28#>
 
