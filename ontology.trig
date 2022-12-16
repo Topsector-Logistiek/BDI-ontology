@@ -15,9 +15,9 @@ prefix def:      <https://ontology.bdinetwork.org/model/def/>
 prefix shp:      <https://ontology.bdinetwork.org/model/shp/>
 
 
-graph:ontology {
+graph:bdiOntology {
 
-  graph:ontology
+  graph:bdiOntology
     a owl:Ontology;
     rdfs:label 'BDI Ontology'@en.
 
@@ -31,7 +31,7 @@ graph:ontology {
     a owl:DatatypeProperty ;
     dct:subject uncefact:identificationId ;
     rdfs:domain rdfs:Resource ;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range xsd:string .
 
 
@@ -61,7 +61,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:carrierParty;
     rdfs:domain def:Consignment;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Party.
 
   shp:Consignment_finalDestinationLocation
@@ -72,7 +72,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:finalDestinationLocation;
     rdfs:domain def:Consignment;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Location.
 
   shp:Consignment_mainCarriageTransportMovement
@@ -83,7 +83,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:mainCarriageTransportMovement;
     rdfs:domain def:Consignment;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:TransportMovement.
 
   shp:Consignment_relatedTradeTransaction
@@ -94,7 +94,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:relatedTradeTransaction;
     rdfs:domain def:Consignment;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:TradeTransaction.
 
   shp:Consignment_transportEvent
@@ -105,7 +105,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:transportEvent;
     rdfs:domain def:Consignment;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Event.
 
 
@@ -116,7 +116,7 @@ graph:ontology {
   def:Driver
     a owl:Class;
     dct:subject uncl3035:Driver;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:subClassOf def:Party;
     owl:onProperty def:partyRoleCode;
     owl:hasValue uncl3035:Driver.
@@ -129,7 +129,7 @@ graph:ontology {
   def:Event
     a owl:Class;
     dct:subject uncefact:Event;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
 
   shp:Location
@@ -139,7 +139,7 @@ graph:ontology {
   def:Location
     a owl:Class;
     dct:subject uncefact:Location;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
 
   shp:Party
@@ -153,7 +153,7 @@ graph:ontology {
   def:Party
     a owl:Class;
     dct:subject uncefact:Party;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:name
     a sh:PropertyShape;
@@ -163,7 +163,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:name;
     rdfs:domain rdfs:Resource;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range xsd:string.
 
   shp:Party_partyRoleCode
@@ -174,7 +174,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:partyRoleCode;
     rdfs:domain def:Party;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range uncefact:UNCL3035Code.
 
   shp:Party_specifiedLocation
@@ -185,7 +185,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:specifiedLocation;
     rdfs:domain def:Party;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Location.
 
   shp:Route
@@ -195,7 +195,7 @@ graph:ontology {
   def:Route
     a owl:Class;
     dct:subject uncefact:Route;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:Sensor
     a sh:NodeShape;
@@ -204,7 +204,7 @@ graph:ontology {
   def:Sensor
     a owl:Class;
     dct:subject uncefact:Sensor;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:TradeAgreement
     a sh:NodeShape;
@@ -216,7 +216,7 @@ graph:ontology {
   def:TradeAgreement
     a owl:Class;
     dct:subject uncefact:TradeAgreement;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:TradeAgreement_buyerParty
     a sh:PropertyShape;
@@ -226,7 +226,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:buyerParty;
     rdfs:domain def:Order;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Party.
 
   shp:TradeAgreement_sellerParty
@@ -237,7 +237,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:sellerParty;
     rdfs:domain def:Order;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Party.
 
 
@@ -258,7 +258,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:applicableTradeAgreement;
     rdfs:domain def:TradeTransaction;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:TradeAgreement.
 
 
@@ -273,7 +273,7 @@ graph:ontology {
   def:TransportMeans
     a owl:Class;
     dct:subject uncefact:TransportMeans;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:TransportMeans_identificationId
     a sh:PropertyShape;
@@ -290,7 +290,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:operatorParty;
     rdfs:domain def:TransportMeans;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Party.
 
   shp:TransportMeans_transportMeansTypeCode
@@ -301,7 +301,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:transportMeansTypeCode;
     rdfs:domain def:TransportMeans;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range uncefact:UNCL8179Code.
 
   shp:TransportEquipment
@@ -314,7 +314,7 @@ graph:ontology {
   def:TransportEquipment
     a owl:Class;
     dct:subject uncefact:TransportEquipment; #Will most likely change to LogisticsTransportEquipment in release 1.0 of uncefact-ld
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:TransportEquipment_identificationId
     a sh:PropertyShape;
@@ -330,7 +330,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:transportEquipmentCategoryCode;
     rdfs:domain def:TransportEquipment;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range uncefact:UNCL8053Code.
 
   shp:TransportMovement
@@ -344,7 +344,7 @@ graph:ontology {
   def:TransportMovement
     a owl:Class;
     dct:subject uncefact:TransportMovement;
-    rdfs:isDefinedBy graph:ontology.
+    rdfs:isDefinedBy graph:bdiOntology.
 
   shp:TransportMovement_loadingEvent
     a sh:PropertyShape;
@@ -354,7 +354,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:loadingEvent;
     rdfs:domain def:TransportMovement;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Event.
 
   shp:TransportMovement_unloadingEvent
@@ -365,7 +365,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:unloadingEvent;
     rdfs:domain def:TransportMovement;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:Event.
 
   shp:TransportMovement_usedTransportMeans
@@ -376,7 +376,7 @@ graph:ontology {
     a owl:ObjectProperty;
     dct:subject uncefact:usedTransportMeans;
     rdfs:domain def:TransportMovement;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:range def:TransportMeans.
 
 
@@ -387,7 +387,7 @@ graph:ontology {
   def:Truck
     a owl:Class;
     dct:subject rec28:Truck;
-    rdfs:isDefinedBy graph:ontology;
+    rdfs:isDefinedBy graph:bdiOntology;
     rdfs:subClassOf def:TransportMeans;
     owl:onProperty def:transportMeansTypeCode;
     owl:hasValue rec28:Truck.
